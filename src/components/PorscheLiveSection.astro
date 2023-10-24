@@ -1,0 +1,142 @@
+---
+import InfoCard from './imgs/porscheLive/InfoCard.astro'
+import InfoCardSmall from './imgs/porscheLive/InfoCardSmall.astro'
+import InstagramLiveSection from './imgs/porscheLive/InstagramLiveSection.astro'
+import PorscheLiveCard from './imgs/porscheLive/PorscheLiveCard.astro'
+---
+
+<section class='py-5 pb-20 px-20 relative'>
+  <h3 class='text-3xl font-semibold my-6'>Porsche Live</h3>
+  <div class='grid grid-cols-6 grid-rows-3 gap-2'>
+    <PorscheLiveCard
+      colStart='col-start-1'
+      colSpan='col-span-2'
+      rowStart='row-start-1'
+      rowSpan='row-span-2'
+      img='https://d2vykwbochoala.cloudfront.net/t_smart_auto_crop/https://d1sdeqoxcfgxl0.cloudfront.net/images/original/4623dbbd0d48dbce2cd1c53d7315c8f3a2faf3807b0d83b659865d7a.jpg'
+      title='El nuevo 718 Spyder SR se convierte'
+      instagram='@porschecenter_santiago'
+      hover='group-hover:opacity-100'
+    />
+    <PorscheLiveCard
+      colStart='col-start-1'
+      colSpan='col-span-1'
+      rowStart='row-start-3'
+      rowSpan='row-span-1'
+      img='https://d2vykwbochoala.cloudfront.net/t_smart_auto_crop/https://d1sdeqoxcfgxl0.cloudfront.net/images/original/d8b1b76f5c06d8c08e18e3014c258aed172df4756ff4f41dba52ab6a.jpg'
+      title='Nuestras estaciones'
+      instagram='@porschepuertorico'
+      hover='group-hover:opacity-100'
+    />
+    <PorscheLiveCard
+      colStart='col-start-2'
+      colSpan='col-span-1'
+      rowStart='row-start-3'
+      rowSpan='row-span-1'
+      img='https://d2vykwbochoala.cloudfront.net/t_smart_auto_crop/https://d1sdeqoxcfgxl0.cloudfront.net/images/original/fe509ff9253373e81dbeca4f7e3667df5d0844ac71905da7cb2f291c.jpg'
+      title='From its nose to its'
+      instagram='@porsche'
+      hover='group-hover:opacity-100'
+    />
+    <PorscheLiveCard
+      colStart='col-start-3'
+      colSpan='col-span-1'
+      rowStart='row-start-1'
+      rowSpan='row-span-1'
+      img='https://d2vykwbochoala.cloudfront.net/t_smart_auto_crop/https://d1sdeqoxcfgxl0.cloudfront.net/images/original/88e54d4f01b814d710045b584b993cca27ff80949056aa0eb211c182.jpg'
+      title='Todo empezó'
+      instagram='@porschecenter santodomingo'
+      hover='group-hover:opacity-100'
+    />
+    <PorscheLiveCard
+      colStart='col-start-4'
+      colSpan='col-span-1'
+      rowStart='row-start-1'
+      rowSpan='row-span-1'
+      img='https://d2vykwbochoala.cloudfront.net/t_smart_auto_crop/https://d1sdeqoxcfgxl0.cloudfront.net/images/original/a18214d1a07b6b66bf2cf19931a14e5af68e4d4600dc1ef786d24f85.jpg'
+      title='Hi, Im Willem'
+      instagram='@porschecenter'
+      hover='group-hover:opacity-100'
+    />
+    <!-- video 1 -->
+    <div
+      class='col-start-3 col-span-2 row-start-2 row-span-2 relative group cursor-pointer overflow-hidden'
+    >
+      <video
+        class='absolute -bottom-28 left-0 object-cover'
+        width='100%'
+        height='100%'
+        loop=''
+        playsinline='true'
+        autoplay
+        muted=''
+        src='https://d7c4jjeuqag9w.cloudfront.net/videos/5e8d210b845052977a5e9b717d0c85b59cf7cf7520e99c8d49d0e66adb11d8a7/0/540p'
+      ></video>
+      <InfoCard
+        title='All charged up for a race to the summit.'
+        instagram='@porsche'
+        hover='group-hover:opacity-100'
+      />
+      <InstagramLiveSection />
+    </div>
+    <PorscheLiveCard
+      colStart='col-start-5'
+      colSpan='col-span-2'
+      rowStart='row-start-1'
+      rowSpan='row-span-2'
+      img='https://d2vykwbochoala.cloudfront.net/t_smart_auto_crop/https://d1sdeqoxcfgxl0.cloudfront.net/images/original/21f208d30f85eb0af46bc40b172a833598b483c45b0fc846cad5d979.jpg'
+      title='It doesnt get more pristine than this. 📷'
+      instagram='@porsche'
+      hover='group-hover:opacity-100'
+    />
+    <PorscheLiveCard
+      colStart='col-start-5'
+      colSpan='col-span-1'
+      rowStart='row-start-3'
+      rowSpan='row-span-1'
+      img='https://d2vykwbochoala.cloudfront.net/t_smart_auto_crop/https://d1sdeqoxcfgxl0.cloudfront.net/images/original/75c9972f4e89b4d1583f306814de2717bd9dd488d6a14f6afb0f85ec.jpeg'
+      title='Adrenalina, potencia'
+      instagram='@porschepuertorico'
+      hover='group-hover:opacity-100'
+    />
+    <!-- video 2 -->
+    <div
+      class='col-start-6 col-span-1 row-start-3 row-span-1 relative group cursor-pointer overflow-hidden'
+    >
+      <video
+        class='absolute -bottom-20 left-0 object-cover'
+        width='100%'
+        height='100%'
+        loop=''
+        playsinline='true'
+        autoplay
+        muted=''
+        src='https://d7c4jjeuqag9w.cloudfront.net/videos/5a29c3b9d8478c35df0fce2e20e78aee4ac8087477e822a723acc878ea01af19/0/540p'
+      ></video>
+      <InfoCardSmall
+        title='Cozying up in a classic.'
+        instagram='@porsche'
+        hover='group-hover:opacity-100'
+      />
+      <InstagramLiveSection />
+    </div>
+  </div>
+  <div
+    class='absolute bottom-2 right-20 py-3 px-5 bg-gray-800 text-white hover:bg-red-600 cursor-pointer'
+  >
+    <a class='flex'
+      ><svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='10'
+        height='10'
+        fill='currentColor'
+        class='bi bi-chevron-right text-white stroke-2 w-4 h-4 mt-1 me-3'
+        viewBox='0 0 16 16'
+      >
+        <path
+          fill-rule='evenodd'
+          d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'
+        ></path>
+      </svg>Cargar más</a>
+  </div>
+</section>

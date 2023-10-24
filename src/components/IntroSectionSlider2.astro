@@ -1,0 +1,199 @@
+---
+import PorscheMacanSlide from './imgs/introSlider/PorscheMacanSlide.astro'
+import PorscheCayenneSlide from './imgs/introSlider/PorscheCayenneSlide.astro'
+import PorschePanameraSlide from './imgs/introSlider/PorschePanameraSlide.astro'
+import Porsche911Slide from './imgs/introSlider/Porsche911Slide.astro'
+---
+
+<section
+  id='intro-section-slider'
+  class='w-screen h-auto relative flex flex-row group transition-all duration-500 ease-out'
+>
+  <!-- style="transform: translate(100px);" -->
+  <div id='slider-container' class='slider__container w-full h-auto relative'>
+    <div
+      id='slider'
+      class='slider flex transition-transform duration-[1.2s] ease-linear snap-x snap-mandatory relative overflow-hidden'
+      style='transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95)'
+    >
+      <!-- Slides -->
+      <!-- <PorscheCayenneSlid -->
+      <PorscheCayenneSlide />
+      <!-- <PorschePanameraSlid -->
+      <PorschePanameraSlide />
+      <!-- <PorscheMacanSlid -->
+      <PorscheMacanSlide />
+      <!-- <Porsche911Slid -->
+      <Porsche911Slide />
+      <!-- images -->
+    </div>
+  </div>
+  <!-- button left -->
+  <div
+    class='arrowsLeft absolute top-0 left-0 w-20 h-full flex items-center justify-center'
+  >
+    <button
+      id='button-left'
+      class='bg-white text-gray-600 p-3 opacity-0 transition-all duration-500 delay-100 ease-in-out group-hover:opacity-100 group-hover:duration-200 hover:bg-red-600 hover:text-white'
+    >
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        fill='none'
+        viewBox='0 0 24 24'
+        stroke-width='1.5'
+        stroke='currentColor'
+        class='w-6 h-6'
+      >
+        <path
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          d='M15.75 19.5L8.25 12l7.5-7.5'></path>
+      </svg>
+    </button>
+  </div>
+  <!-- button right -->
+  <div
+    class='arrowsRight absolute top-0 right-0 w-20 h-full flex items-center justify-center'
+  >
+    <button
+      id='button-right'
+      class='bg-white text-gray-600 p-3 opacity-0 transition-all duration-500 delay-100 ease-in-out group-hover:opacity-100 group-hover:duration-200 hover:bg-red-600 hover:text-white'
+    >
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        fill='none'
+        viewBox='0 0 24 24'
+        stroke-width='1.5'
+        stroke='currentColor'
+        class='w-6 h-6'
+      >
+        <path
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          d='M8.25 4.5l7.5 7.5-7.5 7.5'></path>
+      </svg>
+    </button>
+  </div>
+  <!-- 4 dots -->
+  <div class='animated_dots w-full h-10 absolute bottom-0 left-0'>
+    <div class='w-full h-full relative flex justify-center items-center gap-4'>
+      <span
+        data-dot-number='1'
+        class='animated-dot w-2 h-2 rounded-full bg-gray-300'></span>
+      <span
+        data-dot-number='2'
+        class='animated-dot w-2 h-2 rounded-full bg-gray-300'></span>
+      <span
+        data-dot-number='3'
+        class='animated-dot w-2 h-2 rounded-full bg-gray-300'></span>
+      <span
+        data-dot-number='4'
+        class='animated-dot w-2 h-2 rounded-full bg-gray-300'></span>
+    </div>
+  </div>
+</section>
+
+<script>
+  const sectionSlider = document.querySelector('#intro-section-slider')
+  const animatedDot = document.querySelectorAll('.animated-dot')
+  const slider = document.getElementById('slider')
+  const sliderElement = document.querySelectorAll('.sliders')
+  const buttonLeft = document.getElementById('button-left')
+  const buttonRight = document.getElementById('button-right')
+
+  let counter = 0
+  let isInTransition = false
+
+  const DIRECTION = {
+    RIGHT: 'RIGHT',
+    LEFT: 'LEFT'
+  }
+
+  let sectionSliderWidth
+  window.addEventListener('resize', function () {
+    sectionSliderWidth = sectionSlider.scrollWidth
+  })
+
+  const getTransformValue = () => {
+    return Number(
+      slider.style.transform
+        .replace('translate', '')
+        .replace('(', '')
+        .replace('px)', '')
+    )
+  }
+
+  const reorderSlide = () => {
+    const transformedValue = getTransformValue()
+    slider.style.transition = 'none'
+    if (counter === sliderElement.length - 1) {
+      slider.appendChild(slider.firstElementChild)
+      slider.style.transform = `translate(${
+        transformedValue + sliderElement[counter].scrollWidth
+      }px)`
+      counter--
+    } else if (counter === 0) {
+      slider.prepend(slider.lastElementChild)
+      slider.style.transform = `translate(${
+        transformedValue - sliderElement[counter].scrollWidth
+      }px)`
+      counter++
+    }
+    isInTransition = false
+  }
+
+  const moveSlide = (direction) => {
+    if (isInTransition) return
+    const transformedValue = getTransformValue()
+    slider.style.transition = 'transform 1.2s'
+    isInTransition = true
+    if (direction === DIRECTION.LEFT) {
+      slider.style.transform = `translate(${
+        transformedValue + sliderElement[counter].scrollWidth
+      }px)`
+      counter--
+    } else if (direction === DIRECTION.RIGHT) {
+      slider.style.transform = `translate(${
+        transformedValue - sliderElement[counter].scrollWidth
+      }px)`
+      counter++
+    }
+  }
+
+  buttonLeft.addEventListener('click', () => moveSlide(DIRECTION.LEFT))
+  buttonRight.addEventListener('click', () => moveSlide(DIRECTION.RIGHT))
+
+  slider.addEventListener('transitionend', reorderSlide)
+
+  // Intersection Observer - start code here -
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.2
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const { isIntersecting } = entry
+      if (isIntersecting) {
+        const intro_image_number = entry.target.getAttribute(
+          'data-intro-slider-image-number'
+        )
+        animatedDot.forEach((el) => {
+          const dotOn = el.getAttribute('data-dot-number')
+          if (dotOn === intro_image_number) {
+            el.classList.remove('bg-gray-300')
+            el.classList.add('bg-red-600')
+          } else {
+            el.classList.remove('bg-red-600')
+            el.classList.add('bg-gray-300')
+          }
+        })
+      }
+    })
+  }, observerOptions)
+
+  sliderElement.forEach((section) => observer.observe(section))
+
+  reorderSlide()
+</script>

@@ -1,0 +1,26 @@
+---
+import DiscoverSection from '../components/DiscoverSection.astro'
+import IntroSectionSlider from '../components/IntroSectionSlider.astro'
+import LandingHeader from '../components/LandingHeader.astro'
+import ModelsSection from '../components/ModelsSection.astro'
+import PorscheLiveSection from '../components/PorscheLiveSection.astro'
+import ReEstrenoSection from '../components/Re-estrenoSection.astro'
+import ShoppingToolsSection from '../components/ShoppingToolsSection.astro'
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title='Porsche'>
+  <LandingHeader />
+  <main class=''>
+    <IntroSectionSlider />
+    <ModelsSection />
+    <ReEstrenoSection />
+    <ShoppingToolsSection />
+    <PorscheLiveSection />
+    <DiscoverSection />
+  </main>
+</Layout>
+
+<!-- <script>
+  const imgs = document.getElementsByClassName('img-intro-slider')
+</script> -->

@@ -1,0 +1,68 @@
+---
+import BoxModelImage from './imgs/modelsSection/BoxModelImage.astro'
+---
+
+<section>
+  <div class='mt-4'>
+    <h2>
+      <span class='text-[2.4rem] font-semibold ms-20'>Models</span>
+    </h2>
+  </div>
+  <div class='grid grid-cols-2 mt-4 lg:grid-cols-3'>
+    <!-- css grid: 
+      750px max-width 
+        -> Modelo,
+        -> 2 columnas,
+
+      751px min-width
+        -> Modelo - precio - botón configurar - botón descripción general,
+        -> 2 columnas
+      
+      1115px min-width
+        -> 3 columnas
+       -->
+    <!-- Box model images -->
+    <BoxModelImage
+      model='718'
+      price='MXN 1,548,000.00*'
+      img='https://files.porsche.com/filestore/image/multimedia/none/carrange-flyout-718/small/57ad32c8-ca23-11ec-80ef-005056bbdc38;sO;twebp;c890;gc/porsche-small.webp'
+      alt='Porsche 718'
+    />
+    <BoxModelImage
+      model='911'
+      price='MXN 2,258,000.00*'
+      img='https://files.porsche.com/filestore/image/multimedia/none/carrange-flyout-911/small/3cf76e8c-6694-11e9-80c4-005056bbdc38;sQ;twebp;c1693;gc/porsche-small.webp'
+      alt='Porsche 911'
+    />
+    <BoxModelImage
+      model='Taycan'
+      price='MXN 2,158,000.00*'
+      img='https://files.porsche.com/filestore/image/multimedia/none/carrange-flyout-taycan/small/094d1c1c-bab0-11e9-80c4-005056bbdc38;sQ;twebp;c1693;gc/porsche-small.webp'
+      alt='Porsche Taycan'
+    />
+    <BoxModelImage
+      model='Panamera'
+      price='MXN 1,908,000.00*'
+      img='https://files.porsche.com/filestore/image/multimedia/none/carrange-flyout-panamera/small/31077aa2-d337-11ea-80cc-005056bbdc38;sQ;twebp;c1693;gc/porsche-small.webp'
+      alt='Porsche Panamera'
+    />
+    <BoxModelImage
+      model='Macan'
+      price='MXN 1,228,000.00*'
+      img='https://files.porsche.com/filestore/image/multimedia/none/carrange-flyout-macan/small/47db3c6d-e3d7-11eb-80d9-005056bbdc38;sM;twebp;c892;gc/porsche-small.webp'
+      alt='Porsche Macan'
+    />
+    <BoxModelImage
+      model='Cayenne'
+      price='MXN 1,718,000.00*'
+      img='https://files.porsche.com/filestore/image/multimedia/none/carrange-flyout-cayenne/small/2fbf4ab0-ded1-11ed-8101-005056bbdc38;sQ;twebp;c1693;gc/porsche-small.webp'
+      alt='Porsche Cayenne'
+    />
+  </div>
+  <div class='px-24 mt-4 [&>p]:text-xs font-medium'>
+    <p>
+      * Para consultar nuestros términos legales le recomendamos revisar el pie
+      de página.
+    </p>
+  </div>
+</section>

@@ -1,0 +1,9 @@
+---
+const {title, instagram, hover}= Astro.props
+---
+
+<span class=`absolute z-30 bottom-0 left-0 bg-neutral-800 w-full h-20 text-white ps-4 opacity-0 transition-all duration-300 ease-in-out ${hover}`>
+  <h5 class='text-lg font-thin inline max-w-full'>{title}</h5>
+  <h6 
+  class=' font-medium'>{instagram}</h6>
+</span>
