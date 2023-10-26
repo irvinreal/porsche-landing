@@ -10,11 +10,16 @@ import Porsche911Slide from './imgs/introSlider/Porsche911Slide.astro'
   class='h-auto relative flex flex-row group transition-all duration-500 ease-out'
 >
   <!-- style="transform: translate(100px);" -->
-  <div id='slider-container' class='slider__container w-full h-auto relative'>
+  <div
+    id='slider-container'
+    class='slider__container w-full h-auto relative overflow-hidden'
+  >
+    <!-- class for slider -->
+    <!-- snap-x snap-mandatory relative overflow-auto scroll-smooth -->
     <div
       id='slider'
-      class='slider flex transition-transform duration-[1.2s] ease-linear snap-x snap-mandatory relative overflow-auto scroll-smooth'
-      style='transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95)'
+      class='slider flex transition-transform translate-x-0 duration-[1.2s] ease-[cubic-bezier(0.445, 0.05, 0.55, 0.95)]'
+      style='transform: translateX(0px);'
     >
       <!-- Slides -->
       <!-- <PorscheCayenneSlid -->
@@ -30,7 +35,7 @@ import Porsche911Slide from './imgs/introSlider/Porsche911Slide.astro'
   </div>
   <!-- button left -->
   <div
-    class='hidden arrowsLeft absolute top-0 left-0 w-20 h-full md:flex items-center justify-center'
+    class='hidden arrowsLeft absolute z-50 top-0 left-0 w-20 h-full md:flex items-center justify-center'
   >
     <button
       id='button-left'
@@ -53,7 +58,7 @@ import Porsche911Slide from './imgs/introSlider/Porsche911Slide.astro'
   </div>
   <!-- button right -->
   <div
-    class='hidden arrowsRight absolute top-0 right-0 w-20 h-full md:flex items-center justify-center '
+    class='hidden arrowsRight absolute z-50 top-0 right-0 w-20 h-full md:flex items-center justify-center'
   >
     <button
       id='button-right'
@@ -94,10 +99,11 @@ import Porsche911Slide from './imgs/introSlider/Porsche911Slide.astro'
 </section>
 
 <script>
-  const sectionSlider = document.querySelector('#intro-section-slider')
-  const animatedDot = document.querySelectorAll('.animated-dot')
-  const slider = document.querySelector('#slider')
+  // const sectionSlider = document.querySelector('#intro-section-slider')
+  const sliderContainer = document.querySelector('#slider-container')
+  const slider = document.getElementById('slider')
   const sliderElement = document.querySelectorAll('.sliders')
+  const animatedDot = document.querySelectorAll('.animated-dot')
   const buttonLeft = document.getElementById('button-left')
   const buttonRight = document.getElementById('button-right')
 
@@ -109,31 +115,36 @@ import Porsche911Slide from './imgs/introSlider/Porsche911Slide.astro'
     LEFT: 'LEFT'
   }
 
-  // let sectionSliderWidth
-  // window.addEventListener('resize', function () {
-  //   sectionSliderWidth = sectionSlider.scrollWidth
-  // })
-
-  // const getTransformValue = () => {
-  //   return Number(
-  //     slider.style.transform
-  //       .replace('translate', '')
-  //       .replace('(', '')
-  //       .replace('px)', '')
-  //   )
-  // }
+  const getTransformValue = () => {
+    return Number(
+      slider
+        .getAttribute('style')
+        .replace('transform: translateX(', '')
+        .replace('px);', '')
+    )
+  }
 
   const reorderSlide = () => {
-    // const transformedValue = getTransformValue()
-    // slider.style.transition = 'none'
-    slider.setAttribute('style', 'transition: none')
+    const transformedValue = getTransformValue()
+    slider.classList.add('transition-none')
+    slider.classList.add('duration-0')
     if (counter === sliderElement.length - 1) {
       slider.appendChild(slider.firstElementChild)
-      slider.scrollLeft += Number(`${sectionSlider.scrollWidth}`)
+      slider.setAttribute(
+        'style',
+        `transform: translateX(${
+          transformedValue + sliderContainer.clientWidth
+        }px);`
+      )
       counter--
     } else if (counter === 0) {
       slider.prepend(slider.lastElementChild)
-      slider.scrollLeft -= Number(`${sectionSlider.scrollWidth}`)
+      slider.setAttribute(
+        'style',
+        `transform: translateX(${
+          transformedValue - sliderContainer.clientWidth
+        }px);`
+      )
       counter++
     }
     isInTransition = false
@@ -142,19 +153,34 @@ import Porsche911Slide from './imgs/introSlider/Porsche911Slide.astro'
   // function executed by clicking buttons
   const moveSlide = (direction) => {
     if (isInTransition) return
-    // const transformedValue = getTransformValue()
+    const transformedValue = getTransformValue()
+    slider.classList.add('transition-transform')
+    slider.classList.add('duration-[1.2s]')
     isInTransition = true
     if (direction === DIRECTION.LEFT) {
-      slider.scrollLeft -= Number(`${sectionSlider.scrollWidth}`)
-      // counter--
+      slider.setAttribute(
+        'style',
+        `transform: translateX(${
+          transformedValue + sliderContainer.clientWidth
+        }px);`
+      )
+      counter--
     } else if (direction === DIRECTION.RIGHT) {
-      slider.scrollLeft += Number(`${sectionSlider.scrollWidth}`)
-      // counter++
-      console.log(sectionSlider.scrollWidth)
+      slider.setAttribute(
+        'style',
+        `transform: translateX(${
+          transformedValue - sliderContainer.clientWidth
+        }px);`
+      )
+      counter++
     }
     isInTransition = false
   }
-  console.log(sliderElement)
+
+  // Change Slider each 10 seconds
+  // setInterval(() => {
+  //   moveSlide(DIRECTION.RIGHT)
+  // }, 2000)
 
   // Change Slider by clicking buttons (left, right)
   buttonLeft.addEventListener('click', () => moveSlide(DIRECTION.LEFT))
@@ -195,5 +221,5 @@ import Porsche911Slide from './imgs/introSlider/Porsche911Slide.astro'
 
   sliderElement.forEach((section) => observer.observe(section))
 
-  // reorderSlide()
+  reorderSlide()
 </script>

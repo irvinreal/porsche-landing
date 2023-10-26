@@ -1,8 +1,8 @@
 ---
-const {model, price, img, alt } = Astro.props
+const { model, price, img, alt } = Astro.props
 ---
 
-<div class="w-full relative">
+<div class='w-full relative'>
   <img
     class='object-cover object-center w-full h-full max-h-[60vh] lg:max-h-[50vh]'
     alt={alt}
@@ -13,25 +13,54 @@ const {model, price, img, alt } = Astro.props
     data-fade-in-show='true'
   />
   <div class='w-full h-full absolute z-50 top-0 left-0'>
-  <div class="relative w-full h-full flex flex-col justify-between py-6 px-8 text-white bg-gradient-to-b from-black/20 bg-opacity-100">
-    <div>
-      <h5 class='text-3xl font-sans font-semibold'>{model}</h5>
-      <h6 class='text-xl font-sans font-semibold'>{price}</h6>
-    </div>
-    <div class='flex gap-2'>
-      <a href='#' class='flex justify-center items-center gap-1 bg-white text-black py-3 px-4 text-sm'>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-        </svg>        
-        Configurar
-      </a>
-      <a href='#' class='flex justify-center items-center gap-1 py-3 px-4 text-sm border border-white'>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-        </svg>        
-        Descripción general
-      </a>
+    <div
+      class='relative w-full h-full flex flex-col justify-between py-6 px-8 text-white bg-gradient-to-b from-black/20 bg-opacity-100'
+    >
+      <div>
+        <h5 class='text-3xl font-sans font-semibold'>{model}</h5>
+        <h6 class='text-xl font-sans font-semibold'>{price}</h6>
+      </div>
+      <div class='flex gap-2'>
+        <a
+          href='#'
+          class='flex justify-center items-center gap-1 bg-white text-black py-3 px-4 text-sm'
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke-width='1.5'
+            stroke='currentColor'
+            class='w-4 h-4'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              d='M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25'
+            ></path>
+          </svg>
+           Configurar
+        </a>
+        <a
+          href='#'
+          class='flex justify-center items-center gap-1 py-3 px-4 text-sm border border-white'
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke-width='2.5'
+            stroke='currentColor'
+            class='w-4 h-4'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              d='M8.25 4.5l7.5 7.5-7.5 7.5'></path>
+          </svg>
+           Descripción general
+        </a>
+      </div>
     </div>
   </div>
-</div>
 </div>

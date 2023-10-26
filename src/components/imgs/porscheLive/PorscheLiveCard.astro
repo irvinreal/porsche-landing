@@ -10,7 +10,7 @@ const { colStart, colSpan, rowStart, rowSpan, img, title, instagram, hover } =
 <div
   class=`${colStart} ${colSpan} ${rowStart} ${rowSpan} relative group cursor-pointer`
 >
-  <img src={img} width='420' height='420' />
+  <img src={img} width='420' height='420' loading='lazy' />
   {
     colSpan === 'col-span-2' ? (
       <InfoCard title={title} instagram={instagram} hover={hover} />

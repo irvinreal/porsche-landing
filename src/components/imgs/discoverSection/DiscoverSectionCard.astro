@@ -1,17 +1,20 @@
 ---
-const {img, linkTitle} = Astro.props
-
+const { img, linkTitle, icon } = Astro.props
+import GoRight from '../../icons/GoRightIcon.astro'
+import RightIcon from '../../icons/RightIcon.astro'
 ---
 
-<div class='w-full h-auto cursor-pointer group relative'>
-  <img class='w-full' src={img} />
-  <div class='w-full h-1 bg-transparent absolute bottom-0 left-0 transition-colors duration-200 ease-in-out group-hover:bg-red-600' />
+<div class='relative w-full h-auto cursor-pointer group'>
+  <img class='w-full' src={img} loading='lazy' />
+  <div
+    class='w-full h-[3px] bg-transparent absolute bottom-0 left-0 transition-colors duration-200 ease-in-out group-hover:bg-red-600'
+  >
+  </div>
   <div>
-    <h5>{ir === 'ir' ? <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-      </svg> : <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-      </svg>}
+    <h5
+      class='absolute -bottom-8 transition-all duration-100 ease-in-out group-hover:text-red-600 flex items-center gap-2'
+    >
+      {icon === 'right' ? <RightIcon /> : <GoRight />}
       {linkTitle}
     </h5>
   </div>
