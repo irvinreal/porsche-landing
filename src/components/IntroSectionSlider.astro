@@ -5,21 +5,25 @@ import PorschePanameraSlide from './imgs/introSlider/PorschePanameraSlide.astro'
 import Porsche911Slide from './imgs/introSlider/Porsche911Slide.astro'
 ---
 
+<!-- 
+  *** Changes slider ***
+  -> Use CSS Scroll Snap to control the scroll
+  -> implement a new algorithm for making it as same as -- porsche.com/mexico -- slider
+ -->
 <section
   id='intro-section-slider'
   class='h-auto relative flex flex-row group transition-all duration-500 ease-out'
 >
-  <!-- style="transform: translate(100px);" -->
   <div
     id='slider-container'
-    class='slider__container w-full h-auto relative overflow-hidden'
+    class='slider__container w-full sm:h-auto relative overflow-hidden object-cover'
   >
     <!-- class for slider -->
-    <!-- snap-x snap-mandatory relative overflow-auto scroll-smooth -->
+    <!-- transition-transform translate-x-0 duration-[1.2s] -->
     <div
       id='slider'
-      class='slider flex transition-transform translate-x-0 duration-[1.2s] ease-[cubic-bezier(0.445, 0.05, 0.55, 0.95)]'
-      style='transform: translateX(0px);'
+      class='slider w-full min-h-[60dvh] flex ease-[cubic-bezier(0.445, 0.05, 0.55, 0.95)]'
+      style=''
     >
       <!-- Slides -->
       <!-- <PorscheCayenneSlid -->
@@ -97,9 +101,9 @@ import Porsche911Slide from './imgs/introSlider/Porsche911Slide.astro'
     </div>
   </div>
 </section>
-
 <script>
   // const sectionSlider = document.querySelector('#intro-section-slider')
+
   const sliderContainer = document.querySelector('#slider-container')
   const slider = document.getElementById('slider')
   const sliderElement = document.querySelectorAll('.sliders')
@@ -107,7 +111,7 @@ import Porsche911Slide from './imgs/introSlider/Porsche911Slide.astro'
   const buttonLeft = document.getElementById('button-left')
   const buttonRight = document.getElementById('button-right')
 
-  let counter = 0
+  let slideCounter = 0
   let isInTransition = false
 
   const DIRECTION = {
@@ -124,28 +128,35 @@ import Porsche911Slide from './imgs/introSlider/Porsche911Slide.astro'
     )
   }
 
+  // const updateScroll = (transformedValue) => {
+  //   slider.setAttribute(
+  //     'style',
+  //     `transform: translateX(${transformedValue + 1}px);`
+  //   )
+  // }
+
   const reorderSlide = () => {
     const transformedValue = getTransformValue()
-    slider.classList.add('transition-none')
-    slider.classList.add('duration-0')
-    if (counter === sliderElement.length - 1) {
+    slider.classList.remove('transition-transform')
+    slider.classList.remove('duration-[1.2s]')
+    if (slideCounter === sliderElement.length - 1) {
       slider.appendChild(slider.firstElementChild)
       slider.setAttribute(
         'style',
         `transform: translateX(${
-          transformedValue + sliderContainer.clientWidth
+          transformedValue + sliderElement[slideCounter].clientWidth
         }px);`
       )
-      counter--
-    } else if (counter === 0) {
+      slideCounter--
+    } else if (slideCounter === 0) {
       slider.prepend(slider.lastElementChild)
       slider.setAttribute(
         'style',
         `transform: translateX(${
-          transformedValue - sliderContainer.clientWidth
+          transformedValue - sliderElement[slideCounter].clientWidth
         }px);`
       )
-      counter++
+      slideCounter++
     }
     isInTransition = false
   }
@@ -158,21 +169,22 @@ import Porsche911Slide from './imgs/introSlider/Porsche911Slide.astro'
     slider.classList.add('duration-[1.2s]')
     isInTransition = true
     if (direction === DIRECTION.LEFT) {
+      // console.dir(slider.firstElementChild)
       slider.setAttribute(
         'style',
         `transform: translateX(${
-          transformedValue + sliderContainer.clientWidth
+          transformedValue + sliderElement[slideCounter].clientWidth
         }px);`
       )
-      counter--
+      slideCounter--
     } else if (direction === DIRECTION.RIGHT) {
       slider.setAttribute(
         'style',
         `transform: translateX(${
-          transformedValue - sliderContainer.clientWidth
+          transformedValue - sliderElement[slideCounter].clientWidth
         }px);`
       )
-      counter++
+      slideCounter++
     }
     isInTransition = false
   }
@@ -186,12 +198,105 @@ import Porsche911Slide from './imgs/introSlider/Porsche911Slide.astro'
   buttonLeft.addEventListener('click', () => moveSlide(DIRECTION.LEFT))
   buttonRight.addEventListener('click', () => moveSlide(DIRECTION.RIGHT))
 
+  let startGrabing
+  let endGrabind
+  let position = getTransformValue()
+  let scrolled
+  let recorrido = []
+  const guardarRecorrido = (scrollWidth) => {
+    recorrido.push(scrollWidth)
+  }
+
+  slider.addEventListener('touchstart', function (e) {
+    startGrabing = e.touches[0].clientX
+  })
+
+  slider.addEventListener('touchmove', function (e) {
+    if (isInTransition) return
+    const transformedValue = getTransformValue()
+    slider.classList.add('transition-transform')
+    slider.classList.add('duration-[1.2s]')
+    isInTransition = true
+
+    // console.log(endGrabind)
+    if (endGrabind === undefined) {
+      endGrabind = 0
+    }
+    const scrollWidth = e.touches[0].clientX
+    const clientWidth = slider.clientWidth
+
+    let scrollingPx = startGrabing - scrollWidth
+
+    let moviendo = transformedValue + scrollingPx + clientWidth
+
+    const newMov = (transformedValue, moviendo) => {
+      return transformedValue - moviendo
+    }
+
+    slider.setAttribute(
+      'style',
+      `transform: translateX(${
+        endGrabind + newMov(transformedValue, moviendo)
+      }px);`
+    )
+    isInTransition = false
+
+    // console.log(transformedValue)
+    // console.log(scrollWidth)
+
+    guardarRecorrido(scrollWidth)
+
+    scrolled = Number(transformedValue)
+  })
+
+  slider.addEventListener('touchend', function (e) {
+    let transformedValue = getTransformValue()
+    slider.classList.add('transition-transform')
+    slider.classList.add('duration-[1.2s]')
+    endGrabind = transformedValue
+
+    // startStyleTranslated - clientWidth || startStyleTranslated + clientWidth
+    // ----------------------------------------
+    let scrolling = slider.clientWidth + endGrabind
+    for (let i = 0; i < recorrido.length; i++) {
+      if (recorrido[i] < recorrido[i + 1]) {
+        slider.setAttribute(
+          'style',
+          `transform: translateX(${
+            scrolled - scrolling + slider.clientWidth
+          }px);`
+        )
+        console.log('izquierda')
+      } else if (recorrido[i] > recorrido[i + 1]) {
+        slider.setAttribute(
+          'style',
+          `transform: translateX(${
+            scrolled - scrolling - slider.clientWidth
+          }px);`
+        )
+        console.log('derecha')
+      }
+    }
+    transformedValue = getTransformValue()
+    scrolled = Number(transformedValue)
+    console.log('scrolled:', scrolled)
+    console.log('1-transforme:', transformedValue)
+    console.log('2-transforme:', slider.getAttribute('style'))
+    // ----------------------------------------
+
+    recorrido = []
+
+    // reorderSlide()
+  })
+
   slider.addEventListener('transitionend', reorderSlide)
+
   // <- Todo: create function
   // slider.addEventListener('transitionstart', changeDotsColors)
 
   // Intersection Observer - start code here -
   // -> To change dots color
+
   const observerOptions = {
     root: null,
     rootMargin: '0px',
@@ -199,12 +304,21 @@ import Porsche911Slide from './imgs/introSlider/Porsche911Slide.astro'
   }
 
   const observer = new IntersectionObserver((entries) => {
+    // let transformedValue = getTransformValue()
+
     entries.forEach((entry) => {
+      const slide = entry.target
+      const intro_image_number = slide.getAttribute(
+        'data-intro-slider-image-number'
+      )
       const { isIntersecting } = entry
       if (isIntersecting) {
-        const intro_image_number = entry.target.getAttribute(
-          'data-intro-slider-image-number'
-        )
+        // ajust slide
+        // console.log(slider.scrollWidth / 4)}
+        // console.dir(transformedValue)
+        // console.dir(transformedValue - endTouchValue)
+
+        // animation 4 dots
         animatedDot.forEach((el) => {
           const dotOn = el.getAttribute('data-dot-number')
           if (dotOn === intro_image_number) {
@@ -221,5 +335,6 @@ import Porsche911Slide from './imgs/introSlider/Porsche911Slide.astro'
 
   sliderElement.forEach((section) => observer.observe(section))
 
+  // agrega nodos al cargar la página por primera vez
   reorderSlide()
 </script>

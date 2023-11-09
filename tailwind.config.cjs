@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'gray-porsche': '#313639'
+        'gray-porsche': '#313639',
+        'red-porsche': '#d5001c'
       }
     }
   },

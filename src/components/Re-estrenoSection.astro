@@ -1,13 +1,25 @@
 ---
+import LeftButton from './buttons/LeftButton-re-estreno.astro'
+import RightButton from './buttons/RightButton-re-estreno.astro'
 import CardFindModel from './imgs/cardFindModel/CardFindModel.astro'
 ---
 
 <section class='mt-14 relative'>
-  <h3 class='text-3xl font-semibold ms-20'>
+  <!-- button left -->
+  <div
+    class='arrowsLeft absolute z-50 top-0 left-0 w-20 h-full flex items-center justify-center'
+  >
+    <LeftButton />
+  </div>
+  <h3
+    class='text-3xl font-semibold text-center md:text-start mx-8 md:mx-0 md:ms-20'
+  >
     Busque y encuentre su vehículo de re-estreno
   </h3>
-  <div class='py-10 px-20 overflow-hidden'>
-    <div class='flex justify-between gap-5 w-full'>
+  <div class='py-10 px-20'>
+    <div
+      class='flex flex-col sm:flex-row justify-between gap-5 w-full overflow-x-scroll'
+    >
       <CardFindModel
         alt='Porsche - Encuentre modelos 718'
         img='https://files.porsche.com/filestore/image/multimedia/none/homepage-teaser-icc-718/normal/db4be0ec-f8f4-11eb-80db-005056bbdc38;sQ;twebp/porsche-normal.webp'
@@ -39,5 +51,82 @@ import CardFindModel from './imgs/cardFindModel/CardFindModel.astro'
         labelBtn='Cayenne'
       />
     </div>
+    <!-- 4 dots -->
+    <div class='animated_dots w-full h-10 absolute bottom-0 left-0'>
+      <div
+        class='w-full h-full relative flex justify-center items-center gap-3'
+      >
+        <span
+          data-dot-number='1'
+          class='animated-dot w-2 h-2 rounded-full bg-gray-300'></span>
+        <span
+          data-dot-number='2'
+          class='animated-dot w-2 h-2 rounded-full bg-gray-300'></span>
+        <span
+          data-dot-number='3'
+          class='animated-dot w-2 h-2 rounded-full bg-gray-300'></span>
+        <span
+          data-dot-number='4'
+          class='animated-dot w-2 h-2 rounded-full bg-gray-300'></span>
+      </div>
+    </div>
+  </div>
+  <!-- button right -->
+  <div
+    class='arrowsRight absolute top-0 right-0 w-20 h-full flex items-center justify-center'
+  >
+    <RightButton />
   </div>
 </section>
+
+<script>
+  const animatedDot = document.querySelectorAll('.animated-dot')
+  const leftButton = document.getElementById('button-left-re-estreno')
+  const rightButton = document.getElementById('button-right-re-estreno')
+
+  console.log(leftButton.getAttribute('style'))
+
+  let sliderCounter = 0
+
+  const updateCounter = (newEnteredValue) => {
+    sliderCounter = sliderCounter + newEnteredValue
+  }
+
+  updateCounter(+1)
+
+  console.log(sliderCounter)
+  console.log(leftButton.getAttribute('style'))
+
+  leftButton.addEventListener('click', function () {
+    updateCounter(-1)
+
+    console.log('left-click!')
+  })
+
+  rightButton.addEventListener('click', function () {
+    updateCounter(+1)
+
+    console.log(sliderCounter)
+    console.log('right-click!')
+  })
+
+  if (sliderCounter <= 1) {
+    leftButton.style.display = 'none'
+  } else if (sliderCounter > 1) {
+    leftButton.style.display = 'block'
+    console.log(leftButton.getAttribute('style'))
+  }
+
+  animatedDot.forEach((dot) => {
+    let dotNumber = dot.getAttribute('data-dot-number')
+    // console.log(dotNumber)
+
+    if (Number(dotNumber) === sliderCounter) {
+      dot.classList.remove('bg-gray-300')
+      dot.classList.add('bg-red-porsche')
+    } else {
+      dot.classList.remove('bg-red-porsche')
+      dot.classList.add('bg-gray-300')
+    }
+  })
+</script>

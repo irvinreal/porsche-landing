@@ -1,22 +1,20 @@
-<header class='h-[4.7rem] w-full px-14'>
+---
+import MenuIcon from '../components/icons/MenuIcon.astro'
+---
+
+<header class='h-[4.2rem] w-full px-[50px]'>
   <div class='w-full h-full flex justify-between items-center'>
     <div class='w-full'>
       <button class='flex justify-center items-center gap-1'>
         <div>
-          <img
-            src='https://cdn.ui.porsche.com/porsche-design-system/icons/menu-lines.min.30ff09f6e2ce846286dd136279636097.svg'
-            width='22'
-            height='22'
-            loading='lazy'
-            alt='icono menú'
-          />
+          <MenuIcon />
         </div>
-        <span>Menú</span>
+        <span class="hidden sm:inline-block">Menú</span>
       </button>
     </div>
     <div class=''>
       <a href='#'>
-        <div class='w-52'>
+        <div class='w-52 hidden sm:inline-block'>
           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4500 300'>
             <title>Porsche</title>
             <path
@@ -24,16 +22,18 @@
             ></path>
           </svg>
         </div>
+        <div>
+         <img src=" https://cdn.ui.porsche.com/porsche-design-system/crest/porsche-crest.min.8a292fbd35a5155789ddd011585e05c4@2x.png" class="sm:hidden" />
+        </div>
       </a>
     </div>
     <div class='w-full flex justify-end'>
       <a href='#'>
-        <div class=''>
+        <div class='w-full'>
           <img
             src='https://cdn.ui.porsche.com/porsche-design-system/icons/user.min.0f8dcfbe34322e7968b4b23e11d963f0.svg'
-            width='22'
-            height='22'
-            loading='lazy'
+            width='24'
+            height='24'
             alt='icon user'
           />
         </div>

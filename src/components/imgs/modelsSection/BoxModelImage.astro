@@ -1,10 +1,11 @@
 ---
 const { model, price, img, alt } = Astro.props
+import RightIcon from '../../icons/RightIcon.astro'
 ---
 
 <div class='w-full relative'>
   <img
-    class='object-cover object-center w-full h-full max-h-[60vh] lg:max-h-[50vh]'
+    class='object-cover object-center w-full h-56 max-h-[60vh] lg:max-h-[50vh]'
     alt={alt}
     src={img}
     loading='lazy'
@@ -14,13 +15,14 @@ const { model, price, img, alt } = Astro.props
   />
   <div class='w-full h-full absolute z-50 top-0 left-0'>
     <div
-      class='relative w-full h-full flex flex-col justify-between py-6 px-8 text-white bg-gradient-to-b from-black/20 bg-opacity-100'
+      class='relative w-full h-full
+       flex flex-col-reverse sm:flex-col justify-between py-6 px-8 text-white bg-gradient-to-b from-black/20 bg-opacity-100'
     >
       <div>
-        <h5 class='text-3xl font-sans font-semibold'>{model}</h5>
-        <h6 class='text-xl font-sans font-semibold'>{price}</h6>
+        <h5 class='text-xl sm:text-3xl font-sans font-semibold flex items-center'><span class="text-red-600">{<RightIcon/>}</span>{model}</h5>
+        <h6 class='text-xl font-sans font-semibold hidden sm:inline-block'>{price}</h6>
       </div>
-      <div class='flex gap-2'>
+      <div class='hidden sm:flex sm:gap-2'>
         <a
           href='#'
           class='flex justify-center items-center gap-1 bg-white text-black py-3 px-4 text-sm'
