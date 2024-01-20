@@ -1,21 +1,21 @@
 ---
-const { img, linkTitle, icon } = Astro.props
-import GoRight from '../../icons/GoRightIcon.astro'
-import RightIcon from '../../icons/RightIcon.astro'
+const { img, linkTitle, icon } = Astro.props;
+import GoRight from '../../icons/GoRightIcon.astro';
+import RightIcon from '../../icons/RightIcon.astro';
 ---
 
 <div class='relative w-full h-auto cursor-pointer group'>
   <img class='w-full' src={img} loading='lazy' />
-  <div
-    class='w-full h-[3px] bg-transparent absolute bottom-0 left-0 transition-colors duration-200 ease-in-out group-hover:bg-red-600'
-  >
-  </div>
-  <div>
+  <div class='px-1 lg:px-0'>
     <h5
-      class='absolute -bottom-8 transition-all duration-100 ease-in-out group-hover:text-red-600 flex items-center gap-2'
+      class='absolute max-lg:bottom-4 lg:-bottom-8 text-white lg:text-black group-hover:text-red-600 flex items-center gap-2 text-pretty lg:truncate transition-all duration-100 ease-in-out'
     >
       {icon === 'right' ? <RightIcon /> : <GoRight />}
       {linkTitle}
     </h5>
+  </div>
+  <div
+    class='w-full h-[3px] bg-transparent absolute bottom-0 left-0 transition-colors duration-200 ease-in-out group-hover:bg-red-600'
+  >
   </div>
 </div>

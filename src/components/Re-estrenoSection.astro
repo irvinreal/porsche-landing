@@ -1,7 +1,7 @@
 ---
-import LeftButton from './buttons/LeftButton-re-estreno.astro'
-import RightButton from './buttons/RightButton-re-estreno.astro'
-import CardFindModel from './imgs/cardFindModel/CardFindModel.astro'
+import LeftButton from './buttons/LeftButton-re-estreno.astro';
+import RightButton from './buttons/RightButton-re-estreno.astro';
+import CardFindModel from './imgs/cardFindModel/CardFindModel.astro';
 ---
 
 <section class='mt-14 relative'>
@@ -18,7 +18,7 @@ import CardFindModel from './imgs/cardFindModel/CardFindModel.astro'
   </h3>
   <div class='py-10 px-20'>
     <div
-      class='flex flex-col sm:flex-row justify-between gap-5 w-full overflow-x-scroll'
+      class='sliderbr flex w-full overflow-x-scroll transition-transform duration-200'
     >
       <CardFindModel
         alt='Porsche - Encuentre modelos 718'
@@ -73,60 +73,91 @@ import CardFindModel from './imgs/cardFindModel/CardFindModel.astro'
   </div>
   <!-- button right -->
   <div
-    class='arrowsRight absolute top-0 right-0 w-20 h-full flex items-center justify-center'
+    class='arrowsRight hidden md:flex absolute top-0 right-0 w-20 h-full items-center justify-center'
   >
     <RightButton />
   </div>
 </section>
 
 <script>
-  const animatedDot = document.querySelectorAll('.animated-dot')
-  const leftButton = document.getElementById('button-left-re-estreno')
-  const rightButton = document.getElementById('button-right-re-estreno')
+  const animatedDot = document.querySelectorAll('.animated-dot');
+  const leftButton = document.getElementById('button-left-re-estreno');
+  const rightButton = document.getElementById('button-right-re-estreno');
 
-  console.log(leftButton.getAttribute('style'))
+  const slider = document.querySelector('.sliderbr');
+  const firstChildSlider = slider.firstChild;
 
-  let sliderCounter = 0
+  // console.log(leftButton.getAttribute('style'));
+
+  let sliderCounter = 1;
 
   const updateCounter = (newEnteredValue) => {
-    sliderCounter = sliderCounter + newEnteredValue
-  }
+    if (sliderCounter >= 1 || sliderCounter < 4) {
+      sliderCounter = sliderCounter + newEnteredValue;
+    }
+  };
 
-  updateCounter(+1)
+  const renderButtonLeft = () => {
+    if (sliderCounter <= 1) {
+      leftButton.classList.add('hidden');
+      leftButton.classList.remove('block');
+      console.log('< 1', sliderCounter);
+    } else if (sliderCounter >= 2) {
+      leftButton.classList.add('block');
+      leftButton.classList.remove('hidden');
+      console.log('> 1', sliderCounter);
+    }
+  };
 
-  console.log(sliderCounter)
-  console.log(leftButton.getAttribute('style'))
+  renderButtonLeft();
 
+  console.log(sliderCounter);
+  // console.log(leftButton.getAttribute('style'));
+
+  // button left -> click
   leftButton.addEventListener('click', function () {
-    updateCounter(-1)
+    updateCounter(-1);
+    renderButtonLeft();
 
-    console.log('left-click!')
-  })
+    slider.scrollLeft -= 384;
+  });
 
+  // button right -> click
   rightButton.addEventListener('click', function () {
-    updateCounter(+1)
+    updateCounter(+1);
+    renderButtonLeft();
 
-    console.log(sliderCounter)
-    console.log('right-click!')
-  })
-
-  if (sliderCounter <= 1) {
-    leftButton.style.display = 'none'
-  } else if (sliderCounter > 1) {
-    leftButton.style.display = 'block'
-    console.log(leftButton.getAttribute('style'))
-  }
+    slider.scrollLeft += 384;
+  });
 
   animatedDot.forEach((dot) => {
-    let dotNumber = dot.getAttribute('data-dot-number')
-    // console.log(dotNumber)
+    let dotNumber = dot.getAttribute('data-dot-number');
 
     if (Number(dotNumber) === sliderCounter) {
-      dot.classList.remove('bg-gray-300')
-      dot.classList.add('bg-red-porsche')
+      dot.classList.remove('bg-gray-300');
+      dot.classList.add('bg-red-porsche');
     } else {
-      dot.classList.remove('bg-red-porsche')
-      dot.classList.add('bg-gray-300')
+      dot.classList.remove('bg-red-porsche');
+      dot.classList.add('bg-gray-300');
     }
-  })
+  });
 </script>
+
+<!-- style for slider scrollbar:horizontal -->
+<style>
+  .sliderbr::-webkit-scrollbar {
+    background: transparent;
+    height: 0;
+    display: none;
+  }
+
+  .sliderbr::-webkit-scrollbar-track {
+    background: transparent;
+    width: 0;
+    height: 0;
+  }
+
+  .sliderbr::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+</style>

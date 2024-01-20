@@ -1,5 +1,5 @@
 ---
-const { img, alt, subTitleLink } = Astro.props
+const { img, alt, subTitleLink } = Astro.props;
 ---
 
 <div class='relative w-full max-w-fit h-auto group cursor-pointer'>
@@ -10,7 +10,7 @@ const { img, alt, subTitleLink } = Astro.props
     loading='lazy'
   />
   <a
-    class='absolute z-40 bottom-5 left-2 w-[14.5rem] text-white text-xl font-semibold flex group-hover:text-red-600'
+    class='absolute z-40 bottom-5 left-2 w-fit text-white text-balance text-xs md:text-xl flex group-hover:text-red-600'
     href='#'
   >
     <svg
@@ -25,6 +25,6 @@ const { img, alt, subTitleLink } = Astro.props
         fill-rule='evenodd'
         d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'
       ></path>
-    </svg>{subTitleLink}</a
+    </svg><span class=''>{subTitleLink}</span></a
   >
 </div>
