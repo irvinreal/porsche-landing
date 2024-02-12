@@ -1,14 +1,14 @@
 ---
-import InfoCard from './InfoCard.astro'
-import InfoCardSmall from './InfoCardSmall.astro'
-import InstagramLiveSection from './InstagramLiveSection.astro'
+import InfoCard from './InfoCard.astro';
+import InfoCardSmall from './InfoCardSmall.astro';
+import InstagramLiveSection from './InstagramLiveSection.astro';
 
 const { colStart, colSpan, rowStart, rowSpan, img, title, instagram, hover } =
-  Astro.props
+  Astro.props;
 ---
 
 <div
-  class=`${colStart} ${colSpan} ${rowStart} ${rowSpan} relative group cursor-pointer`
+  class=`${colStart} ${colSpan} ${rowStart} ${rowSpan} rounded-md relative group cursor-pointer overflow-hidden`
 >
   <img src={img} width='420' height='420' loading='lazy' />
   {

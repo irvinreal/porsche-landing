@@ -1,13 +1,13 @@
 ---
-import InfoCard from './imgs/porscheLive/InfoCard.astro'
-import InfoCardSmall from './imgs/porscheLive/InfoCardSmall.astro'
-import InstagramLiveSection from './imgs/porscheLive/InstagramLiveSection.astro'
-import PorscheLiveCard from './imgs/porscheLive/PorscheLiveCard.astro'
+import InfoCard from './imgs/porscheLive/InfoCard.astro';
+import InfoCardSmall from './imgs/porscheLive/InfoCardSmall.astro';
+import InstagramLiveSection from './imgs/porscheLive/InstagramLiveSection.astro';
+import PorscheLiveCard from './imgs/porscheLive/PorscheLiveCard.astro';
 ---
 
 <section class='py-5 pb-20 px-20 relative'>
   <h3 class='text-3xl font-semibold my-6'>Porsche Live</h3>
-  <div class='grid grid-cols-6 grid-rows-3 gap-2'>
+  <div class='grid grid-cols-4 grid-rows-4 md:grid-cols-6 md:grid-rows-3 gap-2'>
     <PorscheLiveCard
       colStart='col-start-1'
       colSpan='col-span-2'
@@ -19,10 +19,10 @@ import PorscheLiveCard from './imgs/porscheLive/PorscheLiveCard.astro'
       hover='group-hover:opacity-100'
     />
     <PorscheLiveCard
-      colStart='col-start-1'
-      colSpan='col-span-1'
-      rowStart='row-start-3'
-      rowSpan='row-span-1'
+      colStart=' md:col-start-1'
+      colSpan=' md:col-span-1'
+      rowStart=' md:row-start-3'
+      rowSpan=' md:row-span-1'
       img='https://d2vykwbochoala.cloudfront.net/t_smart_auto_crop/https://d1sdeqoxcfgxl0.cloudfront.net/images/original/d8b1b76f5c06d8c08e18e3014c258aed172df4756ff4f41dba52ab6a.jpg'
       title='Nuestras estaciones'
       instagram='@porschepuertorico'
@@ -49,21 +49,21 @@ import PorscheLiveCard from './imgs/porscheLive/PorscheLiveCard.astro'
       hover='group-hover:opacity-100'
     />
     <PorscheLiveCard
-      colStart='col-start-4'
-      colSpan='col-span-1'
-      rowStart='row-start-1'
-      rowSpan='row-span-1'
+      colStart='hidden md:block md:col-start-4'
+      colSpan='hidden md:block md:col-span-1'
+      rowStart='hidden md:block md:row-start-1'
+      rowSpan='hidden md:block md:row-span-1'
       img='https://d2vykwbochoala.cloudfront.net/t_smart_auto_crop/https://d1sdeqoxcfgxl0.cloudfront.net/images/original/a18214d1a07b6b66bf2cf19931a14e5af68e4d4600dc1ef786d24f85.jpg'
       title='Hi, Im Willem'
       instagram='@porschecenter'
       hover='group-hover:opacity-100'
     />
-    <!-- video 1 -->
+    <!-- video 1 on montains -->
     <div
-      class='col-start-3 col-span-2 row-start-2 row-span-2 relative group cursor-pointer overflow-hidden'
+      class='col-start-3 col-span-2 row-start-2 row-span-4 md:row-span-2 rounded-md relative group cursor-pointer overflow-hidden'
     >
       <video
-        class='absolute -bottom-28 left-0 object-cover'
+        class='absolute md:-bottom-28 left-0 object-cover'
         width='100%'
         height='100%'
         loop=''
@@ -80,19 +80,19 @@ import PorscheLiveCard from './imgs/porscheLive/PorscheLiveCard.astro'
       <InstagramLiveSection />
     </div>
     <PorscheLiveCard
-      colStart='col-start-5'
-      colSpan='col-span-2'
-      rowStart='row-start-1'
-      rowSpan='row-span-2'
+      colStart='col-start-1 md:col-start-5'
+      colSpan='col-span-1 md:col-span-2'
+      rowStart='row-start-4 md:row-start-1'
+      rowSpan='row-span-1 md:row-span-2'
       img='https://d2vykwbochoala.cloudfront.net/t_smart_auto_crop/https://d1sdeqoxcfgxl0.cloudfront.net/images/original/21f208d30f85eb0af46bc40b172a833598b483c45b0fc846cad5d979.jpg'
       title='It doesnt get more pristine than this. 📷'
       instagram='@porsche'
       hover='group-hover:opacity-100'
     />
     <PorscheLiveCard
-      colStart='col-start-5'
+      colStart='col-start-2 md:col-start-5'
       colSpan='col-span-1'
-      rowStart='row-start-3'
+      rowStart='row-start-4 md:row-start-3'
       rowSpan='row-span-1'
       img='https://d2vykwbochoala.cloudfront.net/t_smart_auto_crop/https://d1sdeqoxcfgxl0.cloudfront.net/images/original/75c9972f4e89b4d1583f306814de2717bd9dd488d6a14f6afb0f85ec.jpeg'
       title='Adrenalina, potencia'
@@ -101,10 +101,10 @@ import PorscheLiveCard from './imgs/porscheLive/PorscheLiveCard.astro'
     />
     <!-- video 2 -->
     <div
-      class='col-start-6 col-span-1 row-start-3 row-span-1 relative group cursor-pointer overflow-hidden'
+      class='md:col-start-6 md:col-span-1 md:row-start-3 md:row-span-1 relative group cursor-pointer overflow-hidden rounded-md'
     >
       <video
-        class='absolute -bottom-20 left-0 object-cover'
+        class='absolute md:-bottom-20 left-0 object-cover'
         width='100%'
         height='100%'
         loop=''
@@ -121,6 +121,8 @@ import PorscheLiveCard from './imgs/porscheLive/PorscheLiveCard.astro'
       <InstagramLiveSection />
     </div>
   </div>
+
+  <!-- button cargar más... -->
   <div
     class='absolute bottom-2 right-20 py-3 px-5 bg-gray-porsche text-white hover:bg-red-600 cursor-pointer'
   >
@@ -137,6 +139,7 @@ import PorscheLiveCard from './imgs/porscheLive/PorscheLiveCard.astro'
           fill-rule='evenodd'
           d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'
         ></path>
-      </svg>Cargar más</a>
+      </svg>Cargar más</a
+    >
   </div>
 </section>

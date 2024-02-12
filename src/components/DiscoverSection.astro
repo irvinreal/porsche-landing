@@ -1,5 +1,5 @@
 ---
-import DiscoverSectionCard from './imgs/discoverSection/DiscoverSectionCard.astro'
+import DiscoverSectionCard from './imgs/discoverSection/DiscoverSectionCard.astro';
 
 const DISCOVER_CARDS = [
   {
@@ -22,12 +22,12 @@ const DISCOVER_CARDS = [
     linkTitle: 'Porsche Exclusive Manufaktur.',
     icon: 'right'
   }
-]
+];
 ---
 
 <section class='py-6 pb-14 px-20 mb-20'>
   <h3 class='text-3xl font-semibold my-6'>Discover</h3>
-  <div class='flex'>
+  <div class='flex w-full overflow-x-scroll md:overflow-hidden'>
     {
       DISCOVER_CARDS.map((card) => (
         <DiscoverSectionCard

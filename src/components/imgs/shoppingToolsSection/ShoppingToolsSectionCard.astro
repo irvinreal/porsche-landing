@@ -2,7 +2,9 @@
 const { img, alt, subTitleLink } = Astro.props;
 ---
 
-<div class='relative w-full max-w-fit h-auto group cursor-pointer'>
+<div
+  class='relative min-w-fit md:w-full md:max-w-fit h-auto group cursor-pointer'
+>
   <img
     class='w-full h-auto object-cover object-center'
     alt={alt}

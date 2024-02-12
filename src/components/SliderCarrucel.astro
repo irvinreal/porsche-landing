@@ -1,3 +1,92 @@
-<section>
-  
+---
+import Porsche911Slide from './imgs/introSlider/Porsche911Slide.astro';
+import PorscheCayenneSlide from './imgs/introSlider/PorscheCayenneSlide.astro';
+import PorscheMacanSlide from './imgs/introSlider/PorscheMacanSlide.astro';
+import PorschePanameraSlide from './imgs/introSlider/PorschePanameraSlide.astro';
+---
+
+<section
+  class='swiper w-full h-full sm:h-auto relative overflow-hidden object-cover'
+>
+  <!-- class for slider -->
+  <!-- transition-transform translate-x-0 duration-[1.2s] -->
+  <div
+    class='swiper-wrapper w-full min-h-[60dvh] flex ease-[cubic-bezier(0.445, 0.05, 0.55, 0.95)]'
+    style=''
+  >
+    <!-- Slides -->
+    <div class='swiper-slide'>
+      <PorscheMacanSlide />
+    </div>
+    <div class='swiper-slide'>
+      <PorscheCayenneSlide />
+    </div>
+    <div class='swiper-slide'>
+      <PorschePanameraSlide />
+    </div>
+    <div class='swiper-slide'>
+      <Porsche911Slide />
+    </div>
+  </div>
+  <div class='swiper-pagination'></div>
+  <div
+    class='swiper-button-prev hidden arrowsLeft absolute z-50 top-0 left-0 w-20 h-full md:flex items-center justify-center'
+  >
+    <button
+      id='button-left'
+      class='swiper-button-prev bg-white text-gray-600 p-3 opacity-0 transition-all duration-500 delay-100 ease-in-out group-hover:opacity-100 group-hover:duration-200 hover:bg-red-600 hover:text-white'
+    >
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        fill='none'
+        viewBox='0 0 24 24'
+        stroke-width='1.5'
+        stroke='currentColor'
+        class='w-6 h-6'
+      >
+        <path
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          d='M15.75 19.5L8.25 12l7.5-7.5'></path>
+      </svg>
+    </button>
+  </div>
+  <div
+    class='swiper-button-next hidden arrowsRight absolute z-50 top-0 right-0 w-20 h-full md:flex items-center justify-center'
+  >
+    <button
+      id='button-right'
+      class='bg-white text-gray-600 p-3 opacity-0 transition-all duration-500 delay-100 ease-in-out group-hover:opacity-100 group-hover:duration-200 hover:bg-red-600 hover:text-white'
+    >
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        fill='none'
+        viewBox='0 0 24 24'
+        stroke-width='1.5'
+        stroke='currentColor'
+        class='w-6 h-6'
+      >
+        <path
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          d='M8.25 4.5l7.5 7.5-7.5 7.5'></path>
+      </svg>
+    </button>
+  </div>
 </section>
+
+<script>
+  import Swiper from 'swiper';
+  const swiper = new Swiper('.swiper', {
+    speed: 400,
+    // spaceBetween: 100,
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination'
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    }
+  });
+</script>
