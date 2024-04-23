@@ -6,14 +6,11 @@ import PorschePanameraSlide from './imgs/introSlider/PorschePanameraSlide.astro'
 ---
 
 <section
-  class='swiper w-full h-full sm:h-auto relative overflow-hidden object-cover'
+  class='swiper swiper-hero w-full h-full sm:h-auto relative overflow-hidden object-cover'
 >
   <!-- class for slider -->
   <!-- transition-transform translate-x-0 duration-[1.2s] -->
-  <div
-    class='swiper-wrapper w-full min-h-[60dvh] flex ease-[cubic-bezier(0.445, 0.05, 0.55, 0.95)]'
-    style=''
-  >
+  <div class='swiper-wrapper min-h-[60dvh] flex w-full h-full'>
     <!-- Slides -->
     <div class='swiper-slide'>
       <PorscheMacanSlide />
@@ -30,7 +27,7 @@ import PorschePanameraSlide from './imgs/introSlider/PorschePanameraSlide.astro'
   </div>
   <div class='swiper-pagination'></div>
   <div
-    class='swiper-button-prev hidden arrowsLeft absolute z-50 top-0 left-0 w-20 h-full md:flex items-center justify-center'
+    class='hidden arrowsLeft absolute z-50 top-0 left-0 w-20 h-full md:flex items-center justify-center'
   >
     <button
       id='button-left'
@@ -52,11 +49,11 @@ import PorschePanameraSlide from './imgs/introSlider/PorschePanameraSlide.astro'
     </button>
   </div>
   <div
-    class='swiper-button-next hidden arrowsRight absolute z-50 top-0 right-0 w-20 h-full md:flex items-center justify-center'
+    class='hidden arrowsRight absolute z-50 top-0 right-0 w-20 h-full md:flex items-center justify-center'
   >
     <button
       id='button-right'
-      class='bg-white text-gray-600 p-3 opacity-0 transition-all duration-500 delay-100 ease-in-out group-hover:opacity-100 group-hover:duration-200 hover:bg-red-600 hover:text-white'
+      class='swiper-button-next bg-white text-gray-600 p-3 opacity-0 transition-all duration-500 delay-100 ease-in-out group-hover:opacity-100 group-hover:duration-200 hover:bg-red-600 hover:text-white'
     >
       <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -76,17 +73,32 @@ import PorschePanameraSlide from './imgs/introSlider/PorschePanameraSlide.astro'
 </section>
 
 <script>
-  import Swiper from 'swiper';
-  const swiper = new Swiper('.swiper', {
+  import Swiper from 'Swiper';
+  // import { Autoplay, Navigation, Pagination, Scrollbar } from 'swiper/modules';
+  document.getElementById('button-left').addEventListener('click', function () {
+    swiper.slidePrev();
+  });
+  document
+    .getElementById('button-right')
+    .addEventListener('click', function () {
+      swiper.slideNext();
+    });
+
+  const swiper = new Swiper('.swiper-hero', {
+    // modules: [Navigation, Pagination, Scrollbar, Autoplay],
+    autoplay: true,
     speed: 400,
-    // spaceBetween: 100,
-    loop: true,
+    // loop: true,
+    direction: 'horizontal',
+    // freeMode: true,
     pagination: {
       el: '.swiper-pagination'
     },
+    effect: 'fade',
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev'
     }
   });
+  
 </script>

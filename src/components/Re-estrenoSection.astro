@@ -101,17 +101,17 @@ import CardFindModel from './imgs/cardFindModel/CardFindModel.astro';
     if (sliderCounter <= 1) {
       leftButton.classList.add('hidden');
       leftButton.classList.remove('block');
-      console.log('< 1', sliderCounter);
+      // console.log('< 1', sliderCounter);
     } else if (sliderCounter >= 2) {
       leftButton.classList.add('block');
       leftButton.classList.remove('hidden');
-      console.log('> 1', sliderCounter);
+      // console.log('> 1', sliderCounter);
     }
   };
 
   renderButtonLeft();
 
-  console.log(sliderCounter);
+  // console.log(sliderCounter);
   // console.log(leftButton.getAttribute('style'));
 
   // button left -> click
